@@ -1,1 +1,38 @@
 
+const bodyParser = require("body-parser");
+const express = require("express");
+const path = require("path");
+const app = express();
+const port = 5000;
+
+
+ // Set the views directory
+app.use(express.static(path.join(__dirname, 'FrontEnd')));
+// app.use(express.static(path.join(__dirname, 'EMO')));
+
+// // ENDPOINTS
+
+
+app.get("/", (req, res) => {
+  // res.sendFile("home.html","home.css");
+  res.sendFile('home.html', { root: path.join(__dirname, '/FrontEnd/html') });
+
+});
+
+
+app.get("/about", (req, res) => {
+    res.sendFile("about.html", {root: path.join(__dirname, "/FrontEnd/html")});
+
+  });
+  
+app.get("/EMO", (req, res) => {
+  // res.sendFile("home.html","home.css");
+  res.sendFile('index.html', { root: path.join(__dirname, 'FrontEnd/EMO') });
+
+});
+
+
+
+app.listen(port, ()=>{
+    console.log(`The application started successfully on port ${port}`);
+});
